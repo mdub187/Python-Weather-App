@@ -1,19 +1,24 @@
 * {
+    text-align-last: center;
+    size-adjust: 75%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    /* object-position: center; */
 }
 
 body {
     padding: 2rem;
     background-color: ■#333；
     color: whitesmoke;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    align-content: center;
+    object-fit: center;
+    display: inline-table;
     gap: 2rem;
     font-size: 2rem;
+    justify-items: center
 }
 
 input, button {
@@ -26,7 +31,15 @@ input, button {
     margin: 4px 2px;
     opacity: 0.6;
     transition: 0.3s;
-    display: inline-block;
+    display: inline-table;
     text-decoration: none;
     cursor: pointer;
+}
+
+img.icon {
+    display: inline-table;
+    transform: scale(.8);
+    overflow-clip-margin:
+
+
 }

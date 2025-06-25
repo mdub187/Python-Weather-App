@@ -1,4 +1,5 @@
-icon_filenames = {'01d': 'clear',
+def icons():
+    icon_dict = {'01d': 'clear',
                   '01n': 'nt_clear',
                   '02d': 'cloudy',
                   '02n': 'cloudy',
@@ -15,6 +16,9 @@ icon_filenames = {'01d': 'clear',
                   '13d': 'snow',
                   '13n': 'snow',
                   '50d': 'fog',
-                  '50n': 'fog', }
+                  '50n': 'fog'}
+    return(icon_dict)
 
-@app.route('/')
+if __name__ == "__main__":
+    print(icons)
+    print("__main__")

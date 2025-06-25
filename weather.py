@@ -1,26 +1,32 @@
 from dotenv import load_dotenv
-from pprint import pprint
 import requests
 import os
 
 load_dotenv()
 
 def get_current_weather(city="Denver"):
-    request_url = f'http://api.openweathermap.org/data/2.5/weather?appid={os.getenv("API_KEY")}&q={city}&units=imperial'
+    api_key = os.getenv("API_KEY")
+    if not api_key:
+        raise ValueError("API_KEY not set in environment.")
 
-    weather_data = requests.get(request_url).json()
+    request_url = f"http://api.openweathermap.org/data/2.5/weather?appid={api_key}&q={city}&units=imperial"
+    response = requests.get(request_url)
+    weather_data = response.json()
 
-    return weather_data
+    # Determine icon filename if available
+    if 'weather' in weather_data and isinstance(weather_data['weather'], list) and weather_data['weather']:
+        weather_icon = weather_data['weather'][0].get('icon', 'default_icon')
+    else:
+        weather_icon = 'default_icon'
+    icon_filename = f"{weather_icon}.svg"
+
+    return weather_data, icon_filename
 
 if __name__ == "__main__":
-    print('\n** Get Current Weather Conditions ***\n')
-
-    city = input("\n Please enter a city name: ")
-    # error handling
-    # check for empty string or strings with empty spaces
-    if not bool(city.strip()):
-        city = "Denver"
-    weather_data = get_current_weather(city)
-
-    print("\n")
-    pprint(weather_data)
+    city = input("Enter a city name (default is Denver): ").strip() or "Denver"
+    try:
+        weather_data, icon_filename = get_current_weather(city)
+        print("Weather Data:", weather_data)
+        print("Icon Filename:", icon_filename)
+    except Exception as e:
+        print("Error:", e)
