@@ -44,9 +44,9 @@ if os.path.exists(icon_path):
 else:
     print(f"Icon file {icon_path} not found.")
 
-# Fuzzy matching example
-api_data = ["Appple", "Grapes", "Banna"]  # Example API data with potential misspellings
-local_list = ["Apple", "Orange", "Banana", "Grape"] # Example local list
+
+
+
 
 matched_and_renamed_data = []
 
